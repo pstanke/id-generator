@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 const people = [];
+
 const genders = ['M', 'F'];
+
 const maleNames = [
   'Morris',
   'Sandy',
@@ -14,6 +16,7 @@ const maleNames = [
   'Bennett',
   'Deryck',
 ];
+
 const femaleNames = [
   'Esmeralda',
   'Alys',
@@ -26,6 +29,7 @@ const femaleNames = [
   'Stephania',
   'Etta',
 ];
+
 const lastNames = [
   'Nicky',
   'Jayme',
@@ -52,28 +56,34 @@ const lastNames = [
 const randChoice = (arr) => {
   return arr[Math.floor(arr.length * Math.random())];
 };
+
 const randomAge = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const randomNumber = () => Math.floor(100000000 + Math.random() * 900000000);
 
+const generateMail = (firstName, lastName) => {
+  const mail = `${firstName}.${lastName}@gmail.com`;
+  return mail.toLowerCase();
+};
+
 for (let i = 0; i < 20; i++) {
-  let obj = {};
+  const person = {};
 
-  obj.gender = randChoice(genders);
+  person.gender = randChoice(genders);
 
-  if (obj.gender === 'M') {
-    obj.firstName = randChoice(maleNames);
-  } else obj.firstName = randChoice(femaleNames);
+  person.gender === 'M'
+    ? (person.firstName = randChoice(maleNames))
+    : (person.firstName = randChoice(femaleNames));
 
-  obj.lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+  person.lastName = randChoice(lastNames);
 
-  obj.age = randomAge(18, 78);
+  person.age = randomAge(18, 78);
 
-  obj.phoneNumber = randomNumber();
+  person.phoneNumber = randomNumber();
 
-  obj.mail = `${obj.firstName.toLowerCase()}.${obj.lastName.toLowerCase()}@gmail.com`;
+  person.mail = generateMail(person.firstName, person.lastName);
 
-  people.push(obj);
+  people.push(person);
 }
 
 peopleJSON = JSON.stringify(people);
