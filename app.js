@@ -71,9 +71,9 @@ for (let i = 0; i < 20; i++) {
 
   person.gender = randChoice(genders);
 
-  person.gender === 'M'
-    ? (person.firstName = randChoice(maleNames))
-    : (person.firstName = randChoice(femaleNames));
+  person.firstName = randChoice(
+    person.gender === 'M' ? maleNames : femaleNames
+  );
 
   person.lastName = randChoice(lastNames);
 
